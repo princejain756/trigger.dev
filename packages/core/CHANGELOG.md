@@ -1,5 +1,11 @@
 # internal-platform
 
+## 4.7.7
+
+### Patch Changes
+
+- HMAC webhook verifier configs accept `additionalSignatureHeaders`: more headers that can carry a signature, matched as alternatives to `signatureHeader`. Providers that send a second signature during a secret rotation (Hookdeck's `x-hookdeck-signature-2`) keep verifying through the rotation. ([`08d1ddbd3`](https://github.com/triggerdotdev/trigger.dev/commit/08d1ddbd3531d47ee4fb7f684f07987e2e59ec7e))
+
 ## 4.7.6
 
 ### Patch Changes
