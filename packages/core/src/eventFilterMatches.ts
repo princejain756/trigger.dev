@@ -6,11 +6,9 @@ import type { EventFilter } from "./schemas/eventFilter.js";
 // An example would be [{ $endsWith: ".png" }, { $startsWith: "images/" } ]
 export function eventFilterMatches(payload: any, filter: EventFilter): boolean {
   if (payload === undefined || payload === null) {
-    if (Object.entries(filter).length === 0) {
-      return true;
-    } else {
-      return false;
-    }
+    // A missing or null payload means none of its keys exist either, so the
+    // filter still has to be evaluated: { a: [{ $exists: false }] } must match.
+    payload = {};
   }
 
   for (const [patternKey, patternValue] of Object.entries(filter)) {
